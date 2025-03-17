@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DisCord - Giriş</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>DisCord</h1>
+            <p>Türkçe Discord Alternatifi</p>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Kullanıcı Adı</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <button type="submit" class="login-btn">Giriş Yap</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html> 

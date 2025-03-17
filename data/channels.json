@@ -1,0 +1,23 @@
+{
+  "genel": {
+    "name": "genel",
+    "description": "Genel sohbet kanalı",
+    "created_by": "sistem",
+    "created_at": 1742221333.3255825,
+    "messages": []
+  },
+  "oyun": {
+    "name": "oyun",
+    "description": "Oyun sohbet kanalı",
+    "created_by": "sistem",
+    "created_at": 1742221333.3255837,
+    "messages": []
+  },
+  "müzik": {
+    "name": "müzik",
+    "description": "Müzik paylaşım kanalı",
+    "created_by": "sistem",
+    "created_at": 1742221333.325584,
+    "messages": []
+  }
+}

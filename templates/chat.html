@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DisCord - Sohbet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="sidebar">
+            <div class="logo">
+                <h2>DisCord</h2>
+            </div>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="rooms">Kanallar</button>
+                <button class="tab-btn" data-tab="dm">Direkt Mesajlar</button>
+            </div>
+            <div class="tab-content" id="rooms-tab">
+                <div class="room-list">
+                    <div class="room-header">
+                        <h3>Kanallar</h3>
+                        <button class="create-channel-btn" title="Yeni Kanal Oluştur">+</button>
+                    </div>
+                    <ul>
+                        {% for room_name, room_data in rooms.items() %}
+                        <li class="room-item" data-room="{{ room_name }}" title="{{ room_data.description }}">
+                            <span class="room-name"># {{ room_name }}</span>
+                            {% if room_data.description %}
+                            <span class="room-description">{{ room_data.description }}</span>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-content hidden" id="dm-tab">
+                <div class="dm-list">
+                    <h3>Direkt Mesajlar</h3>
+                    <ul id="dm-users">
+                        <!-- Direkt mesaj kullanıcıları JavaScript ile eklenecek -->
+                    </ul>
+                </div>
+            </div>
+            <div class="user-list">
+                <h3>Kullanıcılar</h3>
+                <ul id="users">
+                    <!-- Kullanıcılar JavaScript ile eklenecek -->
+                </ul>
+            </div>
+            <div class="user-info">
+                <span>{{ username }}</span>
+                <a href="/" class="logout-btn">Çıkış</a>
+            </div>
+        </div>
+        <div class="chat-area">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <h2 id="current-room">Bir kanal seçin</h2>
+                    <p id="room-description" class="room-description"></p>
+                </div>
+                <span id="chat-type" class="chat-type">Kanal</span>
+            </div>
+            <div class="messages" id="messages">
+                <!-- Mesajlar JavaScript ile eklenecek -->
+            </div>
+            <div class="message-input">
+                <form id="message-form">
+                    <input type="text" id="message" placeholder="Mesajınızı yazın..." disabled>
+                    <button type="submit" id="send-btn" disabled>Gönder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Direkt mesaj modalı -->
+    <div id="dm-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Direkt Mesaj Başlat</h3>
+            <p>Mesajlaşmak istediğiniz kullanıcıyı seçin:</p>
+            <ul id="dm-user-list" class="dm-user-list">
+                <!-- Kullanıcılar JavaScript ile eklenecek -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Kanal oluşturma modalı -->
+    <div id="channel-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Yeni Kanal Oluştur</h3>
+            <form id="create-channel-form">
+                <div class="form-group">
+                    <label for="channel-name">Kanal Adı</label>
+                    <input type="text" id="channel-name" required placeholder="örnek: yeni-kanal">
+                </div>
+                <div class="form-group">
+                    <label for="channel-description">Açıklama (İsteğe bağlı)</label>
+                    <textarea id="channel-description" rows="3" placeholder="Kanalın amacını açıklayın..."></textarea>
+                </div>
+                <button type="submit" class="create-btn">Oluştur</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html> 
